@@ -1,8 +1,8 @@
 [package]
 authors = ["Justin Moon <mail@justinmoon.com>"]
 edition = "2018"
-readme = "README.md"
 name = "retry"
+readme = "README.md"
 version = "0.1.0"
 
 [dependencies]
@@ -15,7 +15,7 @@ panic-halt = "0.2.0"
 # panic-itm = "0.4.1"
 
 # Uncomment for the allocator example.
-# alloc-cortex-m = "0.4.0"
+alloc-cortex-m = "0.4.0"
 
 # Uncomment for the device example.
 # Update `memory.x`, set target to `thumbv7em-none-eabihf` in `.cargo/config`,
@@ -26,9 +26,9 @@ panic-halt = "0.2.0"
 
 # this lets you use `cargo fix`!
 [[bin]]
+bench = false
 name = "retry"
 test = false
-bench = false
 
 [profile.release]
 codegen-units = 1 # better optimizations
