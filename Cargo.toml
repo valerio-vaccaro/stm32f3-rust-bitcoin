@@ -24,6 +24,8 @@ alloc-cortex-m = "0.4.0"
 # features = ["stm32f303", "rt"]
 # version = "0.7.1"
 
+bitcoin = {git = "https://github.com/justinmoon/rust-bitcoin.git", branch = "no_std_device", features = ["use-bare-io"], default-features = false}
+
 # this lets you use `cargo fix`!
 [[bin]]
 bench = false

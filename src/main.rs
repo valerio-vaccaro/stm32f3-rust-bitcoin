@@ -13,6 +13,8 @@ use cortex_m::asm;
 use cortex_m_rt::entry;
 use cortex_m_semihosting::{debug, hprintln};
 
+use bitcoin::PrivateKey;
+
 // this is the allocator the application will use
 #[global_allocator]
 static ALLOCATOR: CortexMHeap = CortexMHeap::empty();
@@ -24,14 +26,13 @@ fn main() -> ! {
     // Initialize the allocator BEFORE you use it
     unsafe { ALLOCATOR.init(cortex_m_rt::heap_start() as usize, HEAP_SIZE) }
 
-    // Growable array allocated on the heap
-    let xs = vec![0, 1, 2];
-
-    hprintln!("{:?}", xs).unwrap();
+    let raw = "L1HKVVLHXiUhecWnwFYF6L3shkf1E12HUmuZTESvBXUdx3yqVP1D";
+    let wif = PrivateKey::from_wif(raw).unwrap();
+    hprintln!("Seed WIF: {}", wif).unwrap();
 
     // exit QEMU
     // NOTE do not run this on hardware; it can corrupt OpenOCD state
-    debug::exit(debug::EXIT_SUCCESS);
+    // debug::exit(debug::EXIT_SUCCESS);
 
     loop {}
 }
