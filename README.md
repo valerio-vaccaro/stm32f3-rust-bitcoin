@@ -2,6 +2,12 @@ This demo works with either [the F3 board used by embedded-rust book](https://ru
 
 In order to run the demo, first follow setup instructions for [The Embedded Rust Book](https://rust-embedded.github.io/book/intro/install.html).
 
+[The allocator we're using requires the nightly compiler](https://github.com/rust-embedded/alloc-cortex-m/blob/4673f9324233cce93473068e74dc97fa62775367/src/lib.rs#L3). Run the following within this directory:
+
+```
+rustup override set nightly
+```
+
 You'll need two terminals.
 
 ### Terminal 1:
