@@ -9,18 +9,20 @@
 //! new memory settings.
 
 use std::env;
-use std::fs::File;
+use std::fs;
 use std::io::Write;
 use std::path::PathBuf;
 
 fn main() {
-    // Put `memory.x` in our output directory and ensure it's
-    // on the linker search path.
     let out = &PathBuf::from(env::var_os("OUT_DIR").unwrap());
-    File::create(out.join("memory.x"))
-        .unwrap()
-        .write_all(include_bytes!("memory.x"))
-        .unwrap();
+    let out_dir = env::var("OUT_DIR").unwrap();
+
+    // Toggle boards here, F3 is default
+    let memory_file = match env::var("X") {
+        Ok(val) => val,
+        Err(_) => "f3.x".to_string(),
+    };
+    fs::copy(memory_file, out.join("memory.x")).unwrap();
     println!("cargo:rustc-link-search={}", out.display());
 
     // By default, Cargo will re-run a build script whenever
